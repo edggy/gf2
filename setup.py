@@ -1,3 +1,4 @@
+# python setup.py build_ext --inplace
 from distutils.core import setup, Extension
 
 module1 = Extension('gf2c', sources = ['gf2.c'])

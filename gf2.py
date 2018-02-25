@@ -460,8 +460,8 @@ def findRandomGeneratorPolynomial(size, mod, random):
         checker = checkGeneratorPolynomialC       
     except NameError:  
         checker = checkGeneratorPolynomial
-    poly = random.randrange(2, 2**size-1)
     
+    poly = random.randrange(2, 2**size-1)
     while not checker(poly, mod, size):
         poly = random.randrange(2, 2**size-1)
     return GF2(value=poly, size=size, mod=mod)

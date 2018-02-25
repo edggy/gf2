@@ -173,7 +173,7 @@ bool gf2CheckGeneratorPolynomial(GF2 gen, GF2 mod, unsigned int lgsize) {
 	GF2 j;
 	bool bit;
 	GF2 product;
-	for(j = 2; j < (1 << lgsize) - 1; ++j) {
+	for(j = 2; j < ((GF2)1 << lgsize) - 1; ++j) {
 		product = 1;
 		for(i = 0; i < lgsize; ++i) {
 			bit = (j >> i) & 1;
