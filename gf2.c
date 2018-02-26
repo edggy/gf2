@@ -74,15 +74,10 @@ GF2* gf2divmodvect(GF2 avec[], GF2 dvec[], size_t len) {
 	size_t j;
 	na = gf2bitlength(avec[0]);
 	nd = gf2bitlength(dvec[0]);
-	//printf("na = %u nd = %u\n", na, nd);
 	i = na - nd;
 	q = 0;
-	//if(na - 1 == 32) test = (GF2)2 << (na-2);
-	//else test = (GF2)1 << (na-1);
 	test = (GF2)1 << (na-1);
 	while(i >= 0) {
-		//printf("test = %llu\n", test);
-		//printf("avec[0] = %llu; avec[1] = %llu; avec[2] = %llu; dvec[0] = %llu; dvec[1] = %llu; dvec[2] = %llu\n", avec[0], avec[1], avec[2], dvec[0], dvec[1], dvec[2]);
 		if((avec[0] & test) != 0) {
 			for(j = 0; j < len; ++j) {
 				avec[j] = avec[j] ^ (dvec[j] << i);
@@ -104,7 +99,6 @@ GF2* gf2exteuc(GF2 a, GF2 b, GF2* res) {
 	arow[0] = a; arow[1] = 1; arow[2] = 0;
 	brow[0] = b; brow[1] = 0; brow[2] = 1;
 	while(1) {
-		//printf("arow[0] = %llu; arow[1] = %llu; arow[2] = %llu; brow[0] = %llu; brow[1] = %llu; brow[2] = %llu\n", arow[0], arow[1], arow[2], brow[0], brow[1], brow[2]);
 		rrow = gf2divmodvect(arow, brow, 3);
 		if(rrow[0] == 0) break;
 		arow = brow;
@@ -117,7 +111,6 @@ GF2* gf2exteuc(GF2 a, GF2 b, GF2* res) {
 GF2 gf2modinv(GF2 x, GF2 m, bool* err) {
 	GF2 extEucRes[3];
 	gf2exteuc(x, m, extEucRes);
-	//printf("x = %llu, m = %llu, extEucRes[0] = %llu\n", x, m, extEucRes[0]);
 	if(extEucRes[0] != 1) {
 		*err = true;
 		return -1;
